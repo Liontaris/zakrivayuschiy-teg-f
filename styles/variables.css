@@ -1,1 +1,17 @@
 /* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
+
+:root {
+    --dark: #000;
+    --light: #fff;
+    --green: #00cc14;
+    --transparency: rgba(0 0 0 / 0);
+    --grad-grey: #d3d3d3;
+    --light-grey: #e7e7e7;
+    --dark-grey: #1a1a1a;
+    --deep-green: #007f0c;
+    --dark-green: #004306;
+    --pure-red: #f00;
+    --font-accent: 'Press Start 2P';
+    --font-main: 'Inter';
+    --border-parameters: 2px solid var(--border-color);
+}

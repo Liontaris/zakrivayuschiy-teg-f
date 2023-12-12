@@ -4,3 +4,59 @@
 ✦ theme-light — класс светлой темы
 ✦ не забудьте описать стили для изменения темы через медизапрос пользовательских предпочтений
 */
+
+.theme-light {
+    --text-color: var(--dark);
+    --border-color: var(--dark);
+    --bgr-color: var(--light);
+    --grad-color: var(--grad-grey);
+    --linear-grad-start: var(--light-grey);
+    --linear-grad-end: var(--dark-grey);
+    --font-weight-heading: 700;
+    --font-weight-paragraph: 400;
+    --heart-outline: var(--dark);
+    --button-curtain: var(--light);
+}
+
+.theme-dark {
+    --text-color: var(--green);
+    --border-color: var(--green);
+    --bgr-color: var(--dark);
+    --grad-color: var(--dark);
+    --linear-grad-start: var(--deep-green);
+    --linear-grad-end: var(--dark-green);
+    --font-weight-heading: 785;
+    --font-weight-paragraph: 465;
+    --heart-outline: var(--green);
+    --button-curtain: var(--green);
+}
+
+@media (prefers-color-scheme: light) {
+    .theme-auto {
+        --bgr-color: var(--light);
+        --text-color: var(--dark);
+        --border-color: var(--dark);
+        --grad-color: var(--grad-grey);
+        --linear-grad-start: var(--light-grey);
+        --linear-grad-end: var(--dark-grey);
+        --font-weight-heading: 700;
+        --font-weight-paragraph: 400;
+        --heart-outline: var(--dark);
+        --button-curtain: var(--light);
+    }
+} 
+
+@media (prefers-color-scheme: dark) {
+    .theme-auto {
+        --bgr-color: var(--dark);
+        --text-color: var(--green);
+        --border-color: var(--green);
+        --grad-color: var(--dark);
+        --linear-grad-start: var(--deep-green);
+        --linear-grad-end: var(--dark-green);
+        --font-weight-heading: 785;
+        --font-weight-paragraph: 465;
+        --heart-outline: var(--green);
+        --button-curtain: var(--green);
+    }
+}

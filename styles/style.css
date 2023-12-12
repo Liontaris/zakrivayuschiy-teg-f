@@ -198,6 +198,36 @@
   border-bottom: var(--border-parameters);
 }
 
+/* Фильтры для котиков */
+.beginner {
+  filter: sepia(50%);
+}
+
+.junior {
+  filter: contrast(150%) brightness(120%);
+}
+
+.middle {
+  filter: brightness(120%);
+}
+
+.cool {
+  filter: grayscale(0.6);
+}
+
+.fantastic {
+  filter: hue-rotate(90deg);
+}
+
+.cyber-king {
+  filter: saturate(158%);
+}
+
+.god-is-cat {
+  filter: brightness(150%);
+}
+/* Все котики отфильтрованы */
+
 .main__section-article {
   display: flex;
   flex-direction: column;

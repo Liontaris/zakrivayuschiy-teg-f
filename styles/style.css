@@ -22,6 +22,10 @@
     repeating-linear-gradient(-90deg, var(--grad-color) 0 2px, var(--transparency) 2px 4px),
     repeating-linear-gradient(var(--grad-color) 0 2px, var(--transparency) 2px 4px),
     linear-gradient(var(--linear-grad-start) 0 0.01%, var(--linear-grad-end));
+  background-attachment: fixed; 
+}
+
+.main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -77,7 +81,7 @@
   transition: opacity 0.3s;
 }
 
-.theme-menu__button::after,
+.theme-menu__button::after, /* Псевдоэлемент подчёривание при фокусе */
 .header__logo::after {
   content: '';
   display: block;
@@ -88,13 +92,13 @@
   transition: width 0.3s, opacity 0.3s;
 }
 
-.theme-menu__button:focus-visible,
+.theme-menu__button:focus-visible, /* фокус */
 .header__logo:focus-visible {
   outline: none;
   opacity: 0.6;
 }
 
-.theme-menu__button:focus-visible::after,
+.theme-menu__button:focus-visible::after, /* псевдо при фокусе */
 .header__logo:focus-visible::after {
   width: 100%;
   opacity: 0.6;
@@ -113,60 +117,66 @@
 .theme-menu__button:disabled::before {
   content: '▶';
   position: absolute;
+  top: 2px;
   left: -24px;
   animation: menu-marker 0.5s ease-in-out infinite alternate;
 }
 
-.section {
+.article {
   background-color: var(--bgr-color);
   inline-size: clamp(23.188rem, 16.035rem + 30.516vw, 43.5rem);
   margin-inline: auto;
   border: var(--border-parameters);
 }
 
-.section:not(:first-child) {
+.article:not(:first-child) {
   margin-block-start: clamp(50px, 13vw, 54px)
 }
 
-.main__section-header {
+.article-header {
   padding-inline-start: 10px;
   padding-block: 3px;
-  font-weight: var(--font-weight-heading);
+  /* border-bottom: var(--border-parameters); */
+  font-variation-settings: var(--font-weight-heading);
 }
 
-.section__image-label {
+/* LABELS */
+
+.article__image-label {
   position: relative;
+  border-top: var(--border-parameters);
+  border-bottom: var(--border-parameters);
 }
 
-.section__image-label.html::after {
+.article__image-label.html::after {
   content: "</HTML>";
 }
 
-.section__image-label.css::after {
+.article__image-label.css::after {
   content: "<CSS>";
 }
 
-.section__image-label.desigions::after {
+.article__image-label.desigions::after {
   content: "<desigions>"; /* Это не я, в макете слово decisions написано с ошибкой. Кто-то инглиш прогуливал */
 }
 
-.section__image-label.care::after {
+.article__image-label.care::after {
   content: "care";
 }
 
-.section__image-label.support::after {
+.article__image-label.support::after {
   content: "<support>";
 }
 
-.section__image-label.lifestyle::after {
+.article__image-label.lifestyle::after {
   content: "<lifes-style: none;>";
 }
 
-.section__image-label.experience::after {
+.article__image-label.experience::after {
   content: "<experience>";
 }
 
-.section__image-label::after {
+.article__image-label::after {
   position: absolute;
   font-family: var(--font-accent, fantasy);
   font-size: 0.857rem;
@@ -184,51 +194,53 @@
 
 /* Честно говоря, без этого выглядит лучше */
 @supports ((text-stroke: 1px var(--bgr-color)) or (-webkit-text-stroke: 1px var(--bgr-color))) {
-  .section__image-label::after {
+  .article__image-label::after {
     text-stroke: 1px var(--bgr-color);
     -webkit-text-stroke: 1px var(--bgr-color);
     text-shadow: none;
   }
 }
 
-.main__section-image {
+/* /LABELS */
+
+.article__image {
   width: 100%;
   object-fit: cover;
-  border-top: var(--border-parameters);
-  border-bottom: var(--border-parameters);
+  display: block;
+  aspect-ratio: 1/1;
 }
 
 /* Фильтры для котиков */
-.beginner {
+.filter-sepia {
   filter: sepia(50%);
 }
 
-.junior {
+.filter__contrast-brightness {
   filter: contrast(150%) brightness(120%);
 }
 
-.middle {
+.filter__brightness {
   filter: brightness(120%);
 }
 
-.cool {
+.filter__grayscale {
   filter: grayscale(0.6);
 }
 
-.fantastic {
+.filter__hue-rotate {
   filter: hue-rotate(90deg);
 }
 
-.cyber-king {
+.filter__saturate {
   filter: saturate(158%);
 }
 
-.god-is-cat {
-  filter: brightness(150%);
+.filter__hue-rotate-invert {
+  filter: hue-rotate(256deg) invert(16%);
 }
 /* Все котики отфильтрованы */
 
-.main__section-article {
+.article__text-block {
   display: flex;
   flex-direction: column;
   padding-inline: 25px;
@@ -236,11 +248,11 @@
   gap: 27px;
 }
 
-.main__section-article-text {
-  font-weight: var(--font-weight-paragraph);
+.article-text {
+  font-variation-settings: var(--font-weight-paragraph);
 }
 
-.section__buttons-wrapper {
+.article__buttons-wrapper {
   display: flex;
   justify-content: flex-end;
   margin-inline: 25px;
@@ -254,6 +266,7 @@
   border: 2px solid transparent;
   padding: 0;
   cursor: pointer;
+  transition: border 0.5s;
 }
 
 .card__icon-button:focus {
@@ -262,33 +275,17 @@
 
 .card__icon-button:focus-visible {
   border: 2px solid var(--text-color);
-  transition: border 0.5s;
 }
 
-.button-text {
-  font-size: 0.875rem;
-  color: var(--text-color);
-  font-family: var(--font-accent, fantasy);
-  font-weight: 400;
-  line-height: 90%;
-}
-
-.card__like-button {
-  font-size: 0.875rem;
-  text-transform: capitalize;
-  inline-size: 130px;
-  block-size: 38px;
-  padding: 9px 17px;
-  border: var(--border-parameters);
+.button-parameters {
   background-color: transparent;
+  border: var(--border-parameters);
   cursor: pointer;
   position: relative;
   transition: box-shadow 0.3s;
 }
 
-.card__like-button::after,
-.footer__save-button::after,
-.dialog__button::after {
+.button-parameters::after {
   content: '';
   position: absolute;
   top: 0;
@@ -303,28 +300,39 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.card__like-button:hover::after,
-.footer__save-button:hover::after,
-.dialog__button:hover::after {
+.button-parameters:hover::after {
   transform: scaleX(1);
-  transition: transform 0.5s ease-in-out;
 }
 
-.card__like-button:focus,
-.footer__save-button:focus,
-.dialog__button:focus {
+.button-parameters:focus {
   outline: none;
   box-shadow: 2px 2px 0 var(--text-color);
-  transition: box-shadow 0.3s;
+}
+
+.button__text {
+  font-size: 0.875rem;
+  color: var(--text-color);
+  font-family: var(--font-accent, fantasy);
+  font-weight: 400;
+  line-height: 90%;
+}
+
+.card__like-button {
+  inline-size: 130px;
+  block-size: 38px;
+  padding: 9px 17px;
 }
 
 .footer {
   margin: 54px 0 105px;
 }
 
-.footer__save-button {
+.footer__save-button-icon {
   color: var(--text-color);
-  position: relative;
+  inline-size: 21px;
+}
+
+.footer__save-button {
   display: flex;
   gap: 8px;
   align-items: center;
@@ -334,13 +342,6 @@
   min-block-size: 51px;
   padding: 15px 20px;
   background-color: var(--bgr-color);
-  border: var(--border-parameters);
-  cursor: pointer;
-  transition: box-shadow 0.3s;
-}
-
-.footer__save-button-icon {
-  inline-size: 21px;
 }
 
 .dialog {
@@ -352,7 +353,7 @@
   grid-template-columns: 39px 1fr;
   padding-inline: 30px;
   padding-block: 30px;
-  column-gap: 20px;
+  column-gap: 18px;
   row-gap: 30px;
   position: fixed;
   inset: 0;
@@ -364,9 +365,13 @@
   opacity: 0;
 }
 
+.dialog__button {
+  padding-block: 9px;
+  inline-size: 100%;
+}
+
 .dialog::backdrop {
-  background-color: rgb(0 0 0 / 0.3);
-  backdrop-filter: blur(7px);
+  background-color: rgb(0 0 0 / 0.75);
 }
 
 .dialog__icon {
@@ -378,15 +383,8 @@
   line-height: 150%;
 }
 
-.dialog__button {
-  cursor: pointer;
-  position: relative;
+.dialog__form {
   grid-column: span 2;
-  background-color: transparent;
-  border: var(--border-parameters);
-  padding-block: 9px;
-  line-height: 90%;
-  transition: box-shadow 0.3s;
 }
 
 @media (width <= 413px) {
